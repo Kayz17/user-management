@@ -1,40 +1,41 @@
 package com.dstech.usermanagement.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.dstech.usermanagement.model.Role;
+import com.dstech.usermanagement.model.User;
+import com.dstech.usermanagement.repository.RoleRepository;
+import com.dstech.usermanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.dstech.usermanagement.model.User;
-import com.dstech.usermanagement.repository.UserRepository;
+import java.util.Arrays;
+import java.util.HashSet;
 
 @Service
 public class UserService {
-	@Autowired
-	private UserRepository userRepository;
-	
-	public List<User> findAll() {
 
-		Iterable<User> it = userRepository.findAll();
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-		List<User> users = new ArrayList<User>();
-		it.forEach(e -> users.add(e));
+    @Autowired
+    public UserService(UserRepository userRepository,
+                       RoleRepository roleRepository,
+                       BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
-		return users;
-	}
+    public User findUserByUserName(String username) {
+        return userRepository.findByUsername(username);
+    }
 
-	public Long count() {
+    public User saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        Role userRole = roleRepository.findByRole("ADMIN");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        return userRepository.save(user);
+    }
 
-		return userRepository.count();
-	}
-
-	public void deleteById(Long userId) {
-
-		userRepository.deleteById(userId);
-	}
-
-	public void add(User user) {
-		userRepository.save(user);
-	}
 }
