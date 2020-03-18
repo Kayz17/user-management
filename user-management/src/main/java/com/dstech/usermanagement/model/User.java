@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -28,6 +30,7 @@ public class User {
 	private String password;
 	private String email;
 	@JsonFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate birthday;
 	
 	@ManyToMany(cascade = CascadeType.MERGE)

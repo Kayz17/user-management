@@ -10,7 +10,7 @@
 </head>
 <body>
 <form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Return To Login Page</button>
 </form>
 
 <div class="container">
@@ -23,15 +23,8 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control"/> <label
-                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                            class="validation-message"></label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{username}" placeholder="User name"
+                    	<label for="username">Username:</label>
+                        <input type="text" th:field="*{username}" placeholder="insert username"
                                class="form-control"/> <label
                             th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                             class="validation-message"></label>
@@ -39,9 +32,28 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
+                    	<label for="password">Password:</label>
                         <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control"/> <label
+                               placeholder="insert password" class="form-control"/> <label
                             th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                    	<label for="email">Email:</label>
+                        <input type="text" th:field="*{email}" placeholder="insert email"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">	
+                    	<label for="birthday">Birthday:</label>
+                        <input type="date" th:field="*{birthday}" placeholder="insert birthday"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
                             class="validation-message"></label>
                     </div>
                 </div>
