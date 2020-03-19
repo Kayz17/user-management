@@ -49,6 +49,11 @@ public class User {
 		this.birthday = birthday;
 		this.roles = roles;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+
 	public String getUsername() {
 		return username;
 	}

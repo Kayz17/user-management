@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Profile Page</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+
+		<form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-danger btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form>
+
+		<h2>Profile Details</h2>
+
+		<table border="1" style="width: 300px">
+			<thead>
+				<tr>
+					<td>Username</td>
+					<td>Email</td>
+					<td>Birthday</td>
+				</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+				<tr>
+					<td th:text="${u.username}">kayz</td>
+					<td th:text="${u.email}">demo@mail.com</td>
+					<td th:text="${u.birthday}">dd-MM-yyyy</td>
+					<td ></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="form-group">
+        	<div class="col-sm-9">
+				<form th:action="@{/user/home}" method="get">
+    				<button class="btn btn-md btn-warning btn-block" type="Submit">Return To Homepage</button>
+				</form>
+            </div>
+		</div>
+	</div>
+</body>
+</html>

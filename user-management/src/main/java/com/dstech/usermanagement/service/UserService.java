@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -41,5 +42,10 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+
+	public User getById(Long id) {
+		Optional<User> pUser = userRepository.findById(id);
+		return (pUser.isPresent() ? pUser.get() : null);
+	}
 
 }
